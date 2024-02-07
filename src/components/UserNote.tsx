@@ -72,7 +72,6 @@ let startPosition = 0;
 
 const Note: FC<UserNoteProps> = (props) => {
   const [open, setOpen] = useState(props.open);
-  const [note, setNote] = useState(props.note);
   const $wrapper = useRef<HTMLDivElement>(null);
 
   const { token } = theme.useToken();
@@ -94,17 +93,6 @@ const Note: FC<UserNoteProps> = (props) => {
   }, [open, pinned]);
 
   const rndProps = useMemo<Partial<Props>>(() => {
-    let cacheX = dimension?.x ?? DEFAULT_DIMENSION.x;
-    let cacheY = dimension?.y ?? DEFAULT_DIMENSION.y;
-
-    //  处理边界
-    if (cacheX + ICON_SIZE > window.innerWidth) {
-      cacheX = window.innerWidth - ICON_SIZE;
-    }
-    if (cacheY + ICON_SIZE > window.innerHeight) {
-      cacheY = window.innerHeight - ICON_SIZE;
-    }
-
     const commonProps: Partial<Props> = {
       maxWidth: 300,
       maxHeight: 340,
@@ -206,9 +194,8 @@ const Note: FC<UserNoteProps> = (props) => {
               </Flex>
             </HeaderWrapper>
             <Input.TextArea
-              value={note}
+              value={props.note}
               onChange={(ev) => {
-                setNote(ev.target.value);
                 props?.onNoteChange?.(ev.target.value);
               }}
             />
