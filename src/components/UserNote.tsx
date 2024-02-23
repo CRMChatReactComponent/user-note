@@ -19,12 +19,35 @@ type DimensionType = {
 };
 
 export type UserNoteProps = {
+  /**
+   * 是否展开
+   */
   open?: boolean;
+  /**
+   * 备注字符串
+   */
   note?: string;
+  /**
+   * 备注改变时的回调
+   * @param note
+   */
   onNoteChange?: (note: string) => void;
+  /**
+   * 展开状态改变时的回调
+   * @param bool
+   */
   onOpenChange?: (bool: boolean) => void;
+  /**
+   * 编辑图标 Slot
+   */
   SlotIcon?: ReactNode;
+  /**
+   * 头部 Slot
+   */
   SlotHeader?: ReactNode;
+  /**
+   * 底部 Slot
+   */
   SlotFooter?: ReactNode;
 };
 
