@@ -168,8 +168,8 @@ const Note: FC<UserNoteProps> = (props) => {
           startPosition = data.x + data.y;
         }}
         onDragStop={(_, data) => {
-          //  如果拖拽后，位置没有发生改变，代表着是点击
-          if (startPosition === data.x + data.y) {
+          //  如果拖拽后，位置没有发生改变，代表着是点击(改变距离不允许超过 50 px
+          if (Math.abs(startPosition - (data.x + data.y)) < 50) {
             handleOpenChange(true);
           } else {
             setDimension({
